@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Functions & Variable Environment</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        pre {
+            padding: 1px;
+            color: #ffff !important;
+            background-color: #575252 !important;
+        }
+    </style>
+    <script>
+        debugger;
+
+        var x = 1;
+        console.log("from window " + window.x);
+        console.log("from this " + this.x);
+        a();
+        b();
+        console.log(x);
+        function a() {
+            var x = 10;
+            console.log(x);
+        }
+        function b() {
+            var x = 100;
+            console.log(x);
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">Javascript</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="chapter1.html">Chapter 1</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="chapter2.html">Chapter 2</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Closures.html">Cloures</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="clouresInterview.html">Cloures Adv</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="coding.html">Coding Example</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="prototype.html">Prototype</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascriptAdv.html">Adv Javascript</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="spread.html">Spread Operator</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="es6.html">ES6  Feature</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+
+    <div class="container">
+        <h3>Functions & Variable Environment</h3>
+        <p>In this example we will have print like below</p>
+        <ul>
+            <li>10</li>
+            <li>100</li>
+            <li>1</li>
+        </ul>
+        As with every funtion a new execution context will be created so in each
+        function we have variable with name x so that inner function variable value will be printed.
+        <div class="card">
+            <div class="card-header bg-secondary">
+                Example 1
+            </div>
+            <div class="card-body">
+                <pre>
+                var x= 1;
+                a();
+                b();
+                console.log(x);
+                function a() {
+                    var x= 10;
+                    console.log(x);
+                }
+                function b() {
+                    var x= 100;
+                    console.log(x);
+                }
+                </pre>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header bg-secondary">
+                Example 2
+            </div>
+            <div class="card-body">
+                <p> with window we can acces global object so we can access all variables and function using window or
+                    this</p>
+                <pre>
+                    var x= 1;
+                    console.log("from window "+ window.x);
+                    console.log("from this "+ this.x);
+               </pre>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

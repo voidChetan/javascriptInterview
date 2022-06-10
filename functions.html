@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Functionss</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        pre {
+            padding: 1px;
+            color: #ffff !important;
+            background-color: #575252 !important;
+        }
+    </style>
+    <script>
+        debugger;
+
+        console.log(aarollNo);
+        var aasquare1 = aagetSquare(4);
+        var aasquare2 = aagetSquare(aarollNo);
+        var aarollNo = 2;
+        function aagetSquare(num) {
+            var result = num * num;
+            return result;
+        }
+        // aafunctionAsVariable();
+        var aagetName = () => {
+            console.log("Arrow");
+        }
+        var aafunctionAsVariable = function () {
+            console.log('functionAsVariable');
+        }
+        aagetName();
+    </script>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">Javascript</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="functions.html">Functions</a>
+                </li>
+              
+            </ul>
+        </div>
+    </nav>
+    <br>
+
+    <div class="container">
+        <div class="card mt-3">
+            <div class="card-header text-white bg-secondary">
+                Function Statement- way of creating a function is called a function statement is also called as function
+                delcaration
+            </div>
+            <div class="card-body">
+                <pre>
+                     function a() {
+                         console.log("a called");
+                     }
+               </pre>
+            </div>
+        </div>
+
+         
+
+        <div class="card mt-3">
+            <div class="card-header text-white bg-secondary">
+                anonymous Function- function without a name - so when function is used as value are example of anonymous
+                function
+            </div>
+            <div class="card-body">
+                <pre>
+                   let b =  function () {
+                         console.log("a called");
+                     }
+                     here we are storing function as value to variable b 
+               </pre>
+            </div>
+        </div>
+
+
+        <div class="card mt-3">
+            <div class="card-header text-white bg-secondary">
+                named Function expression- is an anonymous function with a name -but we can't call that function outside
+                since it will be in that variable not in global scope
+            </div>
+            <div class="card-body">
+                <pre>
+                   let b =  function named() {
+                         console.log("a called");
+                     }
+                     here we are storing function named as value to variable b 
+                     but if we call named();
+                     error
+                     named is not defined as its not in global execution context but you can do like below
+                     let b =  function named() {
+                        console.log(named()); => this will return a fucntion statement
+                    }
+               </pre>
+            </div>
+        </div>
+        <div class="card mt-3">
+            <div class="card-header text-white bg-secondary">
+                parameters and arguments- see below
+            </div>
+            <div class="card-body">
+                <pre>
+                    let b = function (param1,param2 ) { => param1a and param 2 are parameters
+                        console.log(param1,param2);
+                    }
+                    b(1,2) = >1 and 2 are arguments
+               </pre>
+            </div>
+        </div>
+        <div class="card mt-3">
+            <div class="card-header text-white bg-secondary">
+                <p> Pure functions-Pure Function is a function (a block of code ) that always returns the same result if
+                    the same arguments are passed. It does not depend on any state, or data change during a program’s
+                    execution rather it only depends on its input arguments.</p>
+                <p> Also a pure function does not produce any observable side effects such as network requests or data
+                    mutation etc.
+            </div>
+            <div class="card-body">
+                <pre>
+                    function calculateGST( productPrice ) { =>this is pure as its doesnt have anything to do with any outside state 
+                        return productPrice * 0.05;            like variable or function which can be changed 
+                    }
+                    var tax= 10;
+                    function calculateGST( productPrice ) {             => this is not pure as its depened on x and its value can change 
+                        return productPrice * (tax / 100) + productPrice; anytime as its in outer scope
+                    }
+               </pre>
+            </div>
+        </div>
+        <div class="card mt-3">
+            <div class="card-header text-white bg-secondary">
+                First class functions- is nothing but ablility to use function as value or can be passed as argumnets to
+                another function or we can return functionas well.
+            </div>
+            <div class="card-body">
+                <pre>
+                    let b = function ( ) { -> we have used a function as a value
+                       return function () {
+                           console.log('returned a function from a function')
+                       }
+                    }
+                    let a= function (func) {
+                        func();
+                    }
+                    a(function() {
+                        console.log('function as argumets');
+                    })
+               </pre>
+            </div>
+        </div>
+        <div class="card mt-3">
+            <div class="card-header text-white bg-secondary">
+                Higher Order Functions- a function which take another function as arguments or a function which returns
+                a function are higher order function
+            </div>
+            <div class="card-body">
+                <pre>
+                    let b = function ( ) { -> we have used a function as a value
+                       return function () {
+                           console.log('returned a function from a function')
+                       }
+                    }
+                    let a= function (func) {
+                        func();
+                    }
+                    a(function() {
+                        console.log('function as argumets');
+                    })
+               </pre>
+                <script>
+                    let oo = function () {
+                        console.log('function as value')
+                    };
+
+                    let funct22 = function (func) {
+                        func();
+                    };
+
+                    funct22(function () {
+                        console.log('func as arg')
+                    });
+                    funct22(func33);
+                    function func33() {
+                        console.log('diff fucn as argu')
+                    }
+
+                    let funRET = function () {
+                        return function () {
+                            console.log('fun returned')
+                        }
+                    };
+                    debugger;
+                    let retFun = funRET();
+                    retFun();
+
+                    function add(num1, num2) {
+                        return num1 + num2;
+                    }
+
+
+                    function add2(num1, num2, num3) {
+                        return num1 + num2 + num3;
+                    }
+                    add(1, 2);
+                    add(1, 2, 2);
+                </script>
+            </div>
+        </div>
+        <div class="card mt-3">
+            <div class="card-header text-white bg-secondary">
+                callback function- A callback function is a function that is passed to another function as an argument
+                and is executed after some operation has been completed.
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <ul id="callbackArrayUl">
+
+                        </ul>
+                    </div>
+                    <div class="col-md-2">
+                        <button onclick="addElement2()" class="btn btn-success btn-sm"> Add Element</button>
+                    </div>
+                </div>
+                <pre>
+                    let rollNoArray = [11, 112];
+                    function addNew(arr, callback) {
+                        arr.push(getRandom(333));
+                        callback();
+                    }
+                    function getRandom(max) {
+                        return Math.floor(Math.random() * max);
+                    } 
+                    function addElement() {
+                        addNew(rollNoArray, function () { -> writing function as parameter
+                            console.log('new Array', JSON.stringify(rollNoArray));
+                            refreshArray();
+                        });
+                    }
+                    function addElement2() {
+                        addNew(rollNoArray,refreshArray);-> passing function name
+                    }
+                    function refreshArray() {
+                        $("#callbackArrayUl").html("");
+                        for (let i = 0; i < rollNoArray.length; i++) {
+                            $("#callbackArrayUl").append("<li>"+rollNoArray[i]+"</li>");
+                        }
+                    }
+               </pre>
+                <script>
+                    let rollNoArray = [];
+                    function addNew(arr, callback) {
+                        arr.push(getRandom(333));
+                        callback();
+                    }
+                    function getRandom(max) {
+                        return Math.floor(Math.random() * max);
+                    }
+
+
+                    function addElement() {
+                        addNew(rollNoArray, function () {
+                            console.log('new Array', JSON.stringify(rollNoArray));
+                            refreshArray();
+                        });
+                    }
+                    function addElement2() {
+                        addNew(rollNoArray, refreshArray);
+                    }
+                    function refreshArray() {
+                        $("#callbackArrayUl").html("");
+                        for (let i = 0; i < rollNoArray.length; i++) {
+                            $("#callbackArrayUl").append("<li> " + rollNoArray[i] + "</li>");
+                        }
+                    }
+                </script>
+            </div>
+        </div>
+        <!-- <div class="card mt-3">
+            <div class="card-header text-white bg-secondary">
+                Function Currying -Currying is a process in functional programming in which we can transform a function
+                with multiple arguments into a sequence of nesting functions. It returns a new function that expects the
+                next argument inline.
+            </div>
+            <div class="card-body">
+
+                <pre>
+                    function multiply(num1, num2) {
+                        return num1 * num2;
+                    }
+
+                    let multiplyByTwo = multiply.bind(this, 2);
+                    let multiplyByThree = multiply.bind(this, 3);
+
+                    console.log('multiplyByTwo ' + multiplyByTwo(2));
+                    console.log('multiplyByThree ' + multiplyByThree(2));
+
+                    let mul = function (x) {
+                        return function (y) {
+                            return x * y;
+                        }
+                    };
+                    let res22 = mul(4)(5);
+                    console.log('currening ' + res22);
+
+                    let mulByTwo = mul(2);
+                    console.log('mulByTwo 4:' + mulByTwo(4));
+                    let mulByThree = mul(3);
+                    console.log('mulByThree 4:' + mulByThree(4));
+               </pre>
+                <script>
+                    function multiply(num1, num2) {
+                        return num1 * num2;
+                    }
+
+                    let multiplyByTwo = multiply.bind(this, 2);
+                    let multiplyByThree = multiply.bind(this, 3);
+
+                    console.log('multiplyByTwo ' + multiplyByTwo(2));
+                    console.log('multiplyByThree ' + multiplyByThree(2));
+
+                    let mul = function (x) {
+                        return function (y) {
+                            return x * y;
+                        }
+                    };
+                    let res22 = mul(4)(5);
+                    console.log('currening ' + res22);
+
+                    let mulByTwo = mul(2);
+                    console.log('mulByTwo 4:' + mulByTwo(4));
+                    let mulByThree = mul(3);
+                    console.log('mulByThree 4:' + mulByThree(4));
+                </script>
+            </div>
+        </div> -->
+        <!-- <div class="card mt-3">
+            <div class="card-header text-white bg-secondary">
+                callback function- A callback function is a function that is passed to another function as an argument
+                and is executed after some operation has been completed.
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table>
+                            <tr>
+                                <th>NOrmal Fun</th>
+                                <th>Arrow Fun</th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    this value inside a regular function is dynamic and depends on the invocation.
+                                </th>
+                                <th>
+                                    this inside the arrow function is bound lexically and equals to this of the outer
+                                    function.
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    arguments object inside the regular functions contains the list of arguments.
+                                </th>
+                                <th>
+                                    arrow function, on the opposite, doesn’t define arguments (but you can easily access
+                                    the arrow function arguments using a rest parameter ...args).
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    not possible in planin func
+                                </th>
+                                <th>
+                                    If the arrow function has one expression, then the expression is returned
+                                    implicitly, even without using the return keyword.
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    can be called before initialization
+                                </th>
+                                <th>
+                                    can't be called before initialization
+                                </th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <pre>
+
+               </pre>
+                <script>
+                    function normalOne(num1, num2, num3) {
+                        console.log('Normal Argumemts' + arguments);
+                    }
+                    let arrowFun = (num1, num2, num3) => {
+                        // console.log('Arrow Argumemts' + arguments);
+                    }
+                    normalOne(1, 2, 3);
+                    arrowFun(5, 6, 7);
+
+                    const redCar = new normalOne('red', 'sdf', 'werew');
+                    console.log(redCar instanceof normalOne); // => true
+
+                   // const newCar = new arrowFun('red', 'sdf', 'werew');
+               ////console.log(newCar instanceof arrowFun) ;
+                </script>
+            </div>
+        </div> -->
+        <div class="card mt-3">
+            <div class="card-header text-white bg-secondary">
+                What is the purpose of a self executing function in javascript?- its doesnt have to called
+            </div>
+            <div class="card-body"> 
+                <pre>
+                    var num1=22;
+                    (function () {
+                        var foo = 3;
+                        console.log(foo,num1);
+                    })();
+
+                    function globalOne()  {
+                        let num2= 122;
+                        (function () {
+                        var foo = 3333;
+                        console.log(foo,num2);
+                        })();
+                    }
+                    globalOne();
+               </pre>
+                <script>
+                    var num1=22;
+                    (function () {
+                        var foo = 3;
+                        console.log(foo,num1);
+                    })();
+
+                    function globalOne()  {
+                        let num2= 122;
+                        (function () {
+                        var foo = 3333;
+                        console.log(foo,num2);
+                        })();
+                    }
+                    globalOne();
+                </script>
+            </div>
+        </div>
+        
+    </div>
+
+</body>
+
+</html>

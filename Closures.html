@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Cloures </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        pre {
+            padding: 1px;
+            color: #ffff !important;
+            background-color: #575252 !important;
+        }
+    </style>
+    <script>
+        function z() {
+                var b = 111;
+                function x() {
+                    var a = 10;
+                    function y() {
+                        console.log(a,b);
+                    }
+                    y();
+                }
+                x();
+            }
+         
+
+        function a() {
+            var rollNo =123;
+            function b() {
+                console.log(rollNo);
+            }
+            return b;
+        }
+        var newFun =  a();
+       // newFun();
+         
+       function xyz() {
+           var number1 =122;
+           console.log('first');
+           setTimeout(function() {
+            console.log(number1);
+           },1000);
+           console.log('last');
+       }
+      // xyz();
+       function mno() {
+            for (let index = 0; index < 5; index++) { 
+                setTimeout(function () {
+                    console.log(index);
+                }, 3000);
+                console.log('index ',index);
+            }
+            
+
+        }
+        mno();
+
+
+
+
+
+        // function a() {
+        //     var x = 10;
+        //     function b() {
+        //         console.log(x);
+        //     }
+        //     b();
+        // }
+        // a();
+
+        // // function top() {
+        // //     var xxx= 999
+        // //     function inner() {
+        // //         console.log(xxx);
+        // //     }
+        // //     return inner;
+        // // }
+        // // var aaa = top();
+        // // aaa();
+
+        // function outer() {
+        //     var x =111;
+        //     function inner1() {
+        //         var y = 777;
+        //         function inner2() {
+        //             console.log(y,x);
+        //         }
+        //         inner2();
+        //     }
+        //     inner1();
+        // }
+        // outer();
+ 
+    </script>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">Javascript</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="chapter1.html">Hoisting</a>
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link" href="functions.html">Functions</a>
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link" href="Closures.html">Cloures</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="clouresInterview.html">Cloures Adv</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="coding.html">Coding Example</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="prototype.html">Prototype</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascriptAdv.html">Adv Javascript</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascriptAdv.html">Adv Javascript</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="spread.html">Spread Operator</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="es6.html">ES6  Feature</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+
+    <div class="container">
+        <h3>Cloures </h3>
+        <p>Cloures is a combination of functions bundled together with a reference to its sorrounding state</p>
+        <p>A Cloures gives you access to an outer functions scope from inner function</p>
+        <p><strong>Uses of clouser</strong></p>
+        <ul>
+            <li>Module Design Pattern</li>
+            <li>maintaining state</li>
+            <li>setTimoutes</li>
+            <li> Iterators</li>
+        </ul>
+        <div class="card">
+            <div class="card-header bg-secondary">
+                Example 1
+            </div>
+            <div class="card-body">
+                <pre>
+                    function a() {
+                        var x = 10;
+                        function b() {
+                            console.log(x);
+                        }
+                        b();
+                    }
+                    a();
+                    So here inner function b will have access to x as its in lexical scope of iots outer function
+               </pre>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header bg-secondary">
+                Example 2
+            </div>
+            <div class="card-body">
+                <pre>
+                    function top() {
+                        var xxx= 999
+                        function inner() {
+                            console.log(xxx);
+                        }
+                        return inner; -> here we are returning function
+                    }
+                    var aaa = top(); - here we are storing whatever function top() is returning
+                    aaa(); so if we execute aaa function it will print 999 as it will still hold the reference
+               </pre>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header bg-secondary">
+                Example 3
+            </div>
+            <div class="card-body">
+                <pre>
+                    function outer() {
+                        var x =111;
+                        function inner1() {
+                            var y = 777;
+                            function inner2() {
+                                console.log(y,x);
+                            }
+                            inner2();
+                        }
+                        inner1();
+                    }
+                    outer();
+                    with this also inner2 function will have 2 clouser one of inner1 and one is outer. so it will print 777,111
+               </pre>
+            </div>
+        </div>
+
+        
+
+    </div>
+
+</body>
+
+</html>

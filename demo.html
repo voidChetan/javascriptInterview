@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>ES-6 features</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        pre {
+            padding: 5px;
+            color: #ffff !important;
+            background-color: #575252 !important;
+        }
+    </style>
+    <script>
+        var name = "Nikhil";
+        var person = {
+            name: "Hemant",
+            age: 30,
+            getDetail: function () {
+                console.log(this.name);
+            },
+            getName: () => {
+                console.log(this.name);
+            }
+        }
+        function printname() {
+            console.log(this.name);
+        }
+        person.getDetail();
+        person.getName();
+        addPerson = {
+            name: "Chetan"
+        } 
+        var fun = printname.bind(addPerson, '', ''); 
+        fun(); 
+    </script>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">Javascript</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="chapter1.html">Hoisting</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="functions.html">Functions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Closures.html">Cloures</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="clouresInterview.html">Cloures Adv</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="coding.html">Coding Example</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="prototype.html">Prototype</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascriptAdv.html">Adv Javascript</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascriptAdv.html">Adv Javascript</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="spread.html">Spread Operator</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="es6.html">ES6 Feature</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+
+
+</body>
+
+</html>

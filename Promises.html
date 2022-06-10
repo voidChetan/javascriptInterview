@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Hoisting, Callstack & Execution</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        pre {
+            padding: 1px;
+            color: #ffff !important;
+            background-color: #575252 !important;
+        }
+        #colorTag {
+            color: green;
+        }
+        .firstTag {
+            color: blue;
+        }
+    </style>
+    
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">Javascript</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link firstTag" id="colorTag" style="color: red;" href="chapter1.html">Hoisting</a>
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link" href="functions.html">Functions</a>
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link" href="Closures.html">Cloures</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="clouresInterview.html">Cloures Adv</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="coding.html">Coding Example</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="prototype.html">Prototype</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascriptAdv.html">Adv Javascript</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascriptAdv.html">Adv Javascript</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="spread.html">Spread Operator</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="es6.html">ES6  Feature</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Promises.html">Promises</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+
+    <div class="container">
+        <h3>Javascript Promises</h3>
+        <div class="card">
+            <div class="card-header bg-secondary">
+                Example 1
+            </div>
+            <div class="card-body">
+                <pre>
+                    let p = new Promise((resolve,reject)=>{
+                        let a=1+3;
+                        if (a==2) {
+                            resolve('Success');
+                        } else {
+                            reject('Error')
+                        }
+                    });
+
+                    p.then((msg)=>{
+                        console.log('In then ' + msg);
+                    }).catch((error)=>{
+                        console.log('In error ' + error);
+                    })
+               </pre>
+
+               <script>
+                   let p = new Promise((resolve,reject)=>{
+                       let a=1+3;
+                       if (a==2) {
+                           resolve('Success');
+                       } else {
+                           reject('Error')
+                       }
+                   })
+                   p.then((msg)=>{
+                       console.log('In then ' + msg);
+                   }).catch((error)=>{
+                       console.log('In error ' + error);
+                   })
+               </script>
+            </div>
+        </div> 
+        <div class="card">
+            <div class="card-header bg-secondary">
+                Example 2
+            </div>
+            <div class="card-body">
+                <pre>
+                    function getResult(number) {
+                        return new Promise((resolve,reject)=>{
+                            if(number %2==0) {
+                                resolve('number is even')
+                            } else {
+                                reject('number is odd')
+                            } 
+                        })
+                    }
+                    (function() {
+                        getResult(3).then((res)=> {
+                            console.log(res);
+                        }).catch((err)=>{
+                            console.log(err);
+                        }) 
+                    })();
+               </pre>
+
+               <script>
+                    function getResult(number) {
+                        return new Promise((resolve,reject)=>{
+                            if(number %2==0) {
+                                resolve('number is even')
+                            } else {
+                                reject('number is odd')
+                            } 
+                        })
+                    }
+                    (function() {
+                        getResult(3).then((res)=> {
+                            console.log(res);
+                        }).catch((err)=>{
+                            console.log(err);
+                        }) 
+                    })();
+               </script>
+            </div>
+        </div> 
+        <div class="card">
+            <div class="card-header bg-secondary">
+                Promise.all - it will get you all response in array format when all promise has returned it's values
+            </div>
+            <div class="card-body">
+                <pre>
+                   const video1 = new Promise((resove,reject)=>{
+                        resove('this is video 1');
+                    });
+                    const video2 = new Promise((resove,reject)=>{
+                        resove('this is video 2');
+                    });
+                    const video3 = new Promise((resove,reject)=>{
+                        resove('this is video 3');
+                    });
+
+                    Promise.all([
+                    video1,
+                    video2,
+                    video3
+                    ]).then((results)=> {
+                        console.log(results);
+                    })
+               </pre> 
+               <script>
+                    const video1 = new Promise((resove,reject)=>{
+                        resove('this is video 1');
+                    });
+                    const video2 = new Promise((resove,reject)=>{
+                        resove('this is video 2');
+                    });
+                    const video3 = new Promise((resove,reject)=>{
+                        resove('this is video 3');
+                    });
+
+                    Promise.all([
+                    video1,
+                    video2,
+                    video3
+                    ]).then((results)=> {
+                        console.log(results);
+                    })
+               </script>
+            </div>
+        </div> 
+        <div class="card">
+            <div class="card-header bg-secondary">
+                Promise.race => it will only get single response which is this is video 2 as it has lowest time
+            </div>
+            <div class="card-body">
+                <pre>
+                    const vdo1 = new Promise((resove,reject)=>{
+                        setTimeout(function(){
+                            resove('this is video 1');
+                        },2000) 
+                    });
+                    const vdo2 = new Promise((resove,reject)=>{
+                        setTimeout(function(){
+                            resove('this is video 2');
+                        },1000) 
+                    });
+                    const vdo3 = new Promise((resove,reject)=>{
+                        setTimeout(function(){
+                            resove('this is video 3');
+                        },3000) 
+                    });
+
+                    Promise.all([
+                    vdo1,
+                    vdo2,
+                    vdo3
+                    ]).then((result)=> {
+                        console.log(result);
+                    })
+               </pre> 
+               <script>
+                    const vdo1 = new Promise((resove,reject)=>{
+                        setTimeout(function(){
+                            resove('this is video 1');
+                        },1000) 
+                    });
+                    const vdo2 = new Promise((resove,reject)=>{
+                        setTimeout(function(){
+                            resove('this is video 2');
+                        },2000) 
+                    });
+                    const vdo3 = new Promise((resove,reject)=>{
+                        setTimeout(function(){
+                            resove('this is video 3');
+                        },3000) 
+                    });
+
+                    Promise.race([
+                    vdo1,
+                    vdo2,
+                    vdo3
+                    ]).then((result)=> {
+                        console.log(result);
+                    })
+               </script>
+            </div>
+        </div> 
+        <div class="card">
+            <div class="card-header bg-secondary">
+                create function whch will return api response
+            </div>
+            <div class="card-body">
+                <pre>
+                    function getUsers() {
+                        return fetch('http://jsonplaceholder.typicode.com/posts/234').then((res) => {
+                            return res.json();
+                        }).catch((err) => {
+                            return err.json();
+                        })
+                    }
+
+                    function loadUser() {
+                        getUsers().then((res) => {
+                            console.log(res);
+                        }).catch((err) => {
+                            console.log('Error ' + err)
+                        })
+                    }
+                    loadUser();
+               </pre> 
+               <script> 
+                    function getUsers() {
+                            return fetch('http://jsonplaceholder.typicode.com/posts/234').then((res) => {
+                                return res.json();
+                            }).catch((err) => {
+                                return err.json();
+                            })
+                        }
+
+                        function loadUser() {
+                            getUsers().then((res) => {
+                                console.log(res);
+                            }).catch((err) => {
+                                console.log('Error ' + err)
+                            })
+                        }
+                        loadUser();
+                    
+               </script>
+            </div>
+        </div> 
+        <div class="card">
+            <div class="card-header bg-secondary">
+               chaining in promise
+            </div>
+            <div class="card-body">
+                <pre>
+                    function getUsers() {
+                        fetch('http://jsonplaceholder.typicode.com/posts').then((res) => { 
+                            return res.json();
+                        }).then((res) => { 
+                            fetch('http://jsonplaceholder.typicode.com/posts/'+res[0].id).then((res2)=> { 
+                                return res2.json();
+                            }).then((res3)=> {
+                                console.log(res3);
+                            })
+                        })
+                    } 
+                    getUsers();
+               </pre> 
+               <script> 
+                   function getUsers() {
+                        fetch('http://jsonplaceholder.typicode.com/posts').then((res) => { 
+                            return res.json();
+                        }).then((res) => { 
+                            fetch('http://jsonplaceholder.typicode.com/posts/'+res[0].id).then((res2)=> { 
+                                return res2.json();
+                            }).then((res3)=> {
+                                console.log(res3);
+                            })
+                        })
+                    } 
+                    getUsers();
+                    
+               </script>
+            </div>
+        </div> 
+        <div class="card">
+            <div class="card-header bg-secondary">
+                async await in function
+            </div>
+            <div class="card-body">
+                <pre>
+                    function getAllPosts() {
+                        return fetch('http://jsonplaceholder.typicode.com/posts').then((res) => {
+                            return res.json();
+                        }).catch((err) => {
+                            return err.json();
+                        })
+                    }
+                    function getSinglePost(id) {
+                        return fetch('http://jsonplaceholder.typicode.com/posts/'+ id).then((res) => {
+                            debugger;
+                            return res.json();
+                        }).catch((err) => {
+                            return err.json();
+                        })
+                    }
+
+                    async function processPost() {
+                        const allPost = await getAllPosts();
+                        console.log('all post' + allPost);
+                        const singlePostData = await getSinglePost(allPost[0].id);
+                        console.log('Single Post Object' + JSON.stringify(singlePostData));
+                    }
+                    processPost();
+               </pre> 
+               <script> 
+                        function getAllPosts() {
+                            return fetch('http://jsonplaceholder.typicode.com/posts').then((res) => {
+                                return res.json();
+                            }).catch((err) => {
+                                return err.json();
+                            })
+                        }
+                        function getSinglePost(id) {
+                            return fetch('http://jsonplaceholder.typicode.com/posts/'+ id).then((res) => {
+                                debugger;
+                                return res.json();
+                            }).catch((err) => {
+                                return err.json();
+                            })
+                        }
+
+                        async function processPost() {
+                                const allPost = await getAllPosts();
+                                console.log('all post' + allPost);
+                                const singlePostData = await getSinglePost(allPost[0].id);
+                                console.log('Single Post Object' + JSON.stringify(singlePostData));
+                        }
+                        processPost();
+                    
+               </script>
+            </div>
+        </div> 
+        <div class="card">
+            <div class="card-header bg-secondary">
+                async await with try catch in function
+            </div>
+            <div class="card-body">
+                <pre>
+                    function getAllPosts() {
+                        return fetch('http://jsonplaceholder.typicode.com/posts').then((res) => {
+                            return res.json();
+                        }).catch((err) => {
+                            return err.json();
+                        })
+                    }
+                    function getSinglePost(id) {
+                        return fetch('http://jsonplaceholder.typicode.com/posts/'+ id).then((res) => {
+                            debugger;
+                            return res.json();
+                        }).catch((err) => {
+                            return err.json();
+                        })
+                    }
+
+                    async function processPost() {
+                        const allPost = await getAllPosts();
+                        console.log('all post' + allPost);
+                        const singlePostData = await noFunction(allPost[0].id);
+                        console.log('Single Post Object' + JSON.stringify(singlePostData));
+                    }
+                    processPost();
+                    Output 
+                    noFunction is not defined
+               </pre> 
+               <script> 
+                        function getAllPosts() {
+                            return fetch('http://jsonplaceholder.typicode.com/posts').then((res) => {
+                                return res.json();
+                            }).catch((err) => {
+                                return err.json();
+                            })
+                        }
+                        function getSinglePost(id) {
+                            return fetch('http://jsonplaceholder.typicode.com/posts/'+ id).then((res) => {
+                                debugger;
+                                return res.json();
+                            }).catch((err) => {
+                                return err.json();
+                            })
+                        }
+
+                        async function processPost() {
+                                try {
+                                    const allPost = await getAllPosts();
+                                    console.log('all post' + allPost);
+                                   // const singlePostData = await noFunction(allPost[0].id);
+                                    //console.log('Single Post Object' + JSON.stringify(singlePostData));
+                                } catch (er) {
+                                    console.error(er);
+                                }
+
+                            }
+                        processPost();
+                    
+               </script>
+            </div>
+        </div> 
+
+        <div class="card">
+            <div class="card-header bg-secondary">
+                async await with try catch in function
+            </div>
+            <div class="card-body">
+                <pre>
+                    function interview() {
+                        return new Promise(function (resolve, reject) {
+                            reject();
+                        });
+                    }
+            
+                    let promise = interview();
+                    promise
+                        .then(function () {
+                            console.log('Beginner');
+                        })
+                        .then(function () {
+                            console.log('Intermediate');
+                        })
+                        .then(function () {
+                            console.log('Expert');
+                        })
+                        .catch(function () {
+                            console.log('Failed');
+                        })
+                        .then(function () {
+                            console.log('Hired');
+                        });
+                        Output: 
+                        Failed
+                        Hired
+
+                    
+               </pre> 
+               <script> 
+                       
+      function interview() {
+            return new Promise(function (resolve, reject) {
+                reject();
+            });
+        }
+
+        let promise = interview();
+        promise
+            .then(function () {
+                console.log('Beginner');
+            })
+            .then(function () {
+                console.log('Intermediate');
+            })
+            .then(function () {
+                console.log('Expert');
+            })
+            .catch(function () {
+                console.log('Failed');
+            })
+            .then(function () {
+                console.log('Hired');
+            });
+    
+               </script>
+            </div>
+        </div> 
+        <div class="card">
+            <div class="card-header bg-secondary">
+                async await with try catch in function
+            </div>
+            <div class="card-body">
+                <pre>
+                    function job(state) {
+                        return new Promise(function (resolve, reject) {
+                            if (state) {
+                                resolve('success');
+                            } else {
+                                reject('error');
+                            }
+                        });
+                    }
+
+                    let promise2 = job(true); 
+                    promise2 .then(function (data) {
+                            console.log('promise2 1 '+data); 
+                            return job(false);
+                        }) 
+                        .catch(function (error) {
+                            console.log('promise2 2 '+error); 
+                            return 'Error caught';
+                        }) 
+                        .then(function (data) {
+                            console.log('promise2 3 '+data); 
+                            return job(true);
+                        }) 
+                        .catch(function (error) {
+                            console.log('promise2 4 '+error);
+                        });
+                        Output: 
+                        promise2 1success
+                        promise2 2error
+                        promise2 3Error caught 
+
+                    
+               </pre> 
+               <script> 
+                       
+                        function job(state) {
+                            return new Promise(function (resolve, reject) {
+                                if (state) {
+                                    resolve('success');
+                                } else {
+                                    reject('error');
+                                }
+                            });
+                        }
+
+                        let promise2 = job(true); 
+                        promise2 .then(function (data) {
+                                console.log('promise2 1'+data); 
+                                return job(false);
+                            }) 
+                            .catch(function (error) {
+                                console.log('promise2 2'+error); 
+                                return 'Error caught';
+                            }) 
+                            .then(function (data) {
+                                console.log('promise2 3'+data); 
+                                return job(true);
+                            }) 
+                            .catch(function (error) {
+                                        console.log('promise2 4' + error);
+                                    });
+
+                                const promise4 = new Promise((resolve, reject) => {
+                                    reject(Error('Some error occurred'));
+                                })
+                                promise4.catch(error => console.log(error.message));
+                                promise4.catch(error => console.log(error.message));
+                                promise4.catch(error => console.log(error.message));
+               </script>
+            </div>
+        </div> 
+        <div class="card">
+            <div class="card-header bg-secondary">
+                You can add multiple handlers (catch, then, and finally) with a single promise.
+            </div>
+            <div class="card-body">
+                <pre>
+                    const promise4 = new Promise((resolve, reject) => {
+                        reject(Error('Some error occurred'));
+                    })
+                    promise4.catch(error => console.log(error.message));
+                    promise4.catch(error => console.log(error.message)); 
+                        Output: 
+                        Some error occurred
+                        Some error occurred  
+                        Some error occurred  
+               </pre> 
+               <script>  
+                    const promise4 = new Promise((resolve, reject) => {
+                        reject(Error('Some error occurred'));
+                    })
+                    promise4.catch(error => console.log(error.message));
+                    promise4.catch(error => console.log(error.message)); 
+                    promise4.catch(error => console.log(error.message)); 
+               </script>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header bg-secondary">
+                The catch function implicitly returns a promise, which can obviously be chained with a then.
+                 Since nothing is returned from the catch block,
+                  when error is logged in the then block it displays undefined.
+            </div>
+            <div class="card-body">
+                <pre>
+                    const promise = new Promise((resolve, reject) => {
+                        reject(Error('Some Error Occurred'));
+                    })
+                   
+                        .catch(error =>  return 'Error caught';)
+                        .then(error => console.log(error));
+                        Some error occurred
+                        undefined 
+                        Solution
+                        .catch(function (error) {
+                            console.log('promise2 2'+error); 
+                            return 'Error caught'; => return like this 
+                        }) 
+                            
+                        
+               </pre> 
+               <script>  
+                    const promise6 = new Promise((resolve, reject) => {
+                            reject(Error('Some Error Occurred'));
+                        })
+                            .catch(error => console.log(error))
+                            .then(error => console.log(error));
+               </script>
+            </div>
+        </div>
+    </div> 
+</body>
+
+</html>

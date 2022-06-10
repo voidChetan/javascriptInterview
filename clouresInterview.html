@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Cloures Interview </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        pre {
+            padding: 1px;
+            color: #ffff !important;
+            background-color: #575252 !important;
+        }
+    </style>
+    <script>
+       function x() {
+           var i=999;
+           setTimeout(function() {
+            console.log(i);
+           },1000)
+       }
+       x();
+
+    //    function y() {
+    //         var i = 2;
+    //         for (var index = 0; index < 5; index++) {
+    //             console.log('For ' + index);
+    //             setTimeout(function () {
+    //                 console.log(index);
+    //             }, index *1000) 
+    //         } 
+    //     }
+    //    y();
+
+
+       function y() { 
+            for (var index = 0; index < 5; index++) {
+                function close(newVal) { 
+                    setTimeout(function () {
+                        console.log(newVal);
+                    }, index * 1000)
+                }
+                close(index); 
+            } 
+        }
+        y();
+ 
+    </script>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">Javascript</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="chapter1.html">Hoisting</a>
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link" href="functions.html">Functions</a>
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link" href="Closures.html">Cloures</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="clouresInterview.html">Cloures Adv</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="coding.html">Coding Example</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="prototype.html">Prototype</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascriptAdv.html">Adv Javascript</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascriptAdv.html">Adv Javascript</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="spread.html">Spread Operator</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="es6.html">ES6  Feature</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+
+    <div class="container">
+        <h3>Cloures </h3>
+        <p>Cloures is a combination of functions bundled together with a reference to its sorrounding state</p>
+        <p>A Cloures gives you access to an outer functions scope from inner function</p>
+         
+        <div class="card">
+            <div class="card-header bg-secondary">
+                Example 1
+            </div>
+            <div class="card-body">
+                <pre>
+                    function x() {
+                        var i=999;
+                        setTimeout(function() {
+                         console.log(i);
+                        },1000)
+                    }
+                    x();
+                    so to settimeout we have passed a function so it will hold reference to variable i and its state 
+                    <br>
+                    so it will print 999 after 1 second
+               </pre>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header bg-secondary">
+                Example 2
+            </div>
+            <div class="card-body">
+                <pre>
+                    function y() { 
+                        for (var index = 0; index < 5; index++) {
+                            console.log('For ' + index);
+                            setTimeout(function () {
+                                console.log(index);
+                            }, index *1000) 
+                        } 
+                    }
+                   y();
+                   output: 
+                   5  
+                   5  
+                   5  
+                   5  
+                   5  
+                   it will take reference to varaibel index and print its latest value
+                 
+                   function y() { 
+                    for (int index = 0; index < 5; index++) {
+                        console.log('For ' + index);
+                        setTimeout(function () {
+                            console.log(index);
+                        }, index *1000) 
+                    } 
+                }
+               y();
+               Output
+               1 
+               2 
+               3 
+               4 
+               5 
+               its because let has a block scope so for every iteration it will cfreate new reference
+               </pre>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header bg-secondary">
+                Example 3
+            </div>
+            <div class="card-body">
+                <pre>
+                    function y() { 
+                        for (var index = 0; index < 5; index++) {
+                            function close(newVal) { 
+                                setTimeout(function () {
+                                    console.log(newVal);
+                                }, index * 1000)
+                            }
+                            close(index); 
+                        } 
+                    }
+                    y();
+                    Output
+                    1
+                    2
+                    3
+                    4
+                    With creating function and  so for each function it will have its own execution context so we will get new value 
+               </pre>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header bg-secondary">
+                Shallow & deep Copy<br>
+                To copy an object in JavaScript, you have three options:
+
+Use the spread (...) syntax
+Use the Object.assign() method
+Use the JSON.stringify() and JSON.parse() methods
+            </div>
+            <div class="card-body">
+                <pre>
+                    const person = {
+                        firstName: 'John',
+                        lastName: 'Doe'
+                    };
+                    
+                    
+                    // using spread ...
+                    let p1 = {
+                        ...person
+                    };
+                    
+                    // using  Object.assign() method
+                    let p2 = Object.assign({}, person);
+                    
+                    // using JSON
+                    let p3 = JSON.parse(JSON.stringify(person));
+               </pre>
+               <script>
+                   let person = {
+                        firstName: 'John',
+                        lastName: 'Doe',
+                        address: {
+                            street: 'North 1st street',
+                            city: 'San Jose',
+                            state: 'CA',
+                            country: 'USA'
+                        }
+                    };
+
+
+                    let copiedPerson = Object.assign({}, person);
+
+                    copiedPerson.firstName = 'Jane'; // disconnected
+
+                    copiedPerson.address.street = 'Amphitheatre Parkway'; // connected
+                    copiedPerson.address.city = 'Mountain View'; // connected
+
+                    console.log('co,pied' +JSON.stringify(copiedPerson) );
+               </script>
+            </div>
+        </div>
+
+        
+
+    </div>
+
+</body>
+
+</html>

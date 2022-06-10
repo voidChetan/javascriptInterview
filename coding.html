@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Coding Practice</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        pre {
+            padding: 1px;
+            color: #ffff !important;
+            background-color: #575252 !important;
+        }
+    </style>
+    <script> 
+            let rollNoArray = [];
+            function addNew(arr, callback) {
+                arr.push(getRandom(333));
+                callback();
+            }
+            function getRandom(max) {
+                return Math.floor(Math.random() * max);
+            }
+
+
+            function addElement() {
+                addNew(rollNoArray, function () {
+                    console.log('new Array', JSON.stringify(rollNoArray));
+                    refreshArray();
+                });
+            }
+            function addElement2() {
+                addNew(rollNoArray,refreshArray);
+            }
+            function refreshArray() {
+                $("#callbackArrayUl").html("");
+                for (let i = 0; i < rollNoArray.length; i++) {
+                    $("#callbackArrayUl").append("<li> " + rollNoArray[i] + "</li>");
+                }
+            }
+            let origStr = "Chetan";
+            function reverseStr() {
+                let strArray = origStr.split("");
+                let revStrarray =  strArray.reverse();
+                let reverseString = revStrarray.join("");
+                console.log('reverse of ', origStr, 'is ', reverseString);
+            }
+            function reverseUsingFor() {
+                let revStr = '';
+                for(let i = origStr.length -1;i >= 0; i --) { 
+                    revStr += origStr[i];
+                }
+                console.log('reverse using for ', origStr, 'is ', revStr);
+            }
+            reverseUsingFor();
+            reverseStr();
+            let num1 =123;
+            let num1str ="222";
+            let charStr ="222abc";
+            console.log(123 ,'is',isNaN(num1));
+            console.log('222 is - ',isNaN(num1str));
+            console.log('222abc is  - ',isNaN(charStr));
+    </script>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">Javascript</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="chapter1.html">Hoisting</a>
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link" href="functions.html">Functions</a>
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link" href="Closures.html">Cloures</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="clouresInterview.html">Cloures Adv</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="coding.html">Coding Example</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="prototype.html">Prototype</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascriptAdv.html">Adv Javascript</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascriptAdv.html">Adv Javascript</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="spread.html">Spread Operator</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="es6.html">ES6  Feature</a>
+                </li>
+            </ul>
+        </div>
+    </nav> 
+    <div class="container"> 
+        <div class="card">
+            <div class="card-header bg-secondary">
+                what a callback function is and provide a simple example
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        A callback function is a function that is passed to another function as an argument and
+                         is executed after some operation has been completed.
+                    </div> 
+                </div>
+                <div class="row">
+                    <div class="col-md-3"> 
+                            <ul id="callbackArrayUl">
+                                
+                            </ul> 
+                    </div>
+                    <div class="col-md-2">
+                        <button onclick="addElement2()" class="btn btn-success btn-sm"> Add Element</button>
+                    </div>
+                </div>
+                <pre>
+                    let rollNoArray = [11, 112];
+                    function addNew(arr, callback) {
+                        arr.push(getRandom(333));
+                        callback();
+                    }
+                    function getRandom(max) {
+                        return Math.floor(Math.random() * max);
+                    } 
+                    function addElement() {
+                        addNew(rollNoArray, function () { -> writing function as parameter
+                            console.log('new Array', JSON.stringify(rollNoArray));
+                            refreshArray();
+                        });
+                    }
+                    function addElement2() {
+                        addNew(rollNoArray,refreshArray);-> passing function name
+                    }
+                    function refreshArray() {
+                        $("#callbackArrayUl").html("");
+                        for (let i = 0; i < rollNoArray.length; i++) {
+                            $("#callbackArrayUl").append("<li>"+rollNoArray[i]+"</li>");
+                        }
+                    }
+               </pre>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header bg-secondary">
+                reverse string 
+            </div>
+            <div class="card-body"> 
+                <pre> 
+                    function reverseStr(str) { -> Method one
+                        let strArray = str.split("");
+                        let revStrarray =  strArray.reverse();
+                        let reverseStr = revStrarray.join("");
+                    }
+                    function reverseUsingFor() { -> Method 2 using for loop
+                        let revStr = '';
+                        for(let i = origStr.length -1;i >= 0; i --) { 
+                            revStr += origStr[i];
+                        } 
+                    }
+               </pre>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header bg-secondary">
+                Get Output
+            </div>
+            <div class="card-body"> 
+                <pre> 
+                    var myObject = {
+                        foo: "bar",
+                        func: function() {
+                            var self = this;
+                            console.log("outer func:  this.foo = " + this.foo);= bar
+                            console.log("outer func:  self.foo = " + self.foo);= bar
+                            (function() {
+                                console.log("inner func:  this.foo = " + this.foo); = undefined -> it will be undefined as no foo in current context 
+                                console.log("inner func:  self.foo = " + self.foo);= bar
+                            }());
+                        }
+                    };
+                    myObject.func(); 
+               </pre>
+               <script>
+                    var myObject = {
+                        foo: "bar",
+                        func: function() {
+                            debugger;
+                            var self = this;
+                            console.log("outer func:  this.foo = " + this.foo);
+                            console.log("outer func:  self.foo = " + self.foo);
+                            (function() {
+                                debugger;
+                                console.log("inner func:  this.foo = " + this.foo);
+                                console.log("inner func:  self.foo = " + self.foo);
+                            }());
+                        }
+                    };
+                    myObject.func(); 
+               </script>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header bg-secondary">
+                Get Output
+            </div>
+            <div class="card-body"> 
+                <pre> 
+                    function add(num1, num2) {
+                        return num1 + num2;
+                    }
+                    function add(num1, num2, num3) {
+                        return num1 + num2+ num3;
+                    }
+                    add(2,3); 
+               </pre>
+               <script>
+                    function add(num1, num2) {
+                        debugger;
+                        return num1 + num2;
+                    }
+                    function add(num1, num2, num3) {
+                        debugger;
+                        return num1 + num2+ num3;
+                    }
+                    function add(num1, num2, num3,num4 ) {
+                        debugger;
+                        return num1 + num2+ num3+ num4;
+                    }
+                    debugger;
+                    add(2,3);
+                    const one = null;
+if (typeof(one) == Object) {
+	console.log('obj')
+}  else {
+    console.log('obj else')
+}
+               </script>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header bg-secondary">
+                empty an array in JavaScript
+            </div>
+            <div class="card-body"> 
+                <pre> 
+                    var arrayList =  ['a', 'b', 'c', 'd', 'e', 'f']; 
+                    arrayList = []; => method 1 
+                    arrayList.length = 0;   => method 2 
+                    arrayList.splice(0, arrayList.length); => method 3 
+                    while(arrayList.length) { => method 4
+                        arrayList.pop();
+                    }
+               </pre>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header bg-secondary">
+                check if a number is an integer
+            </div>
+            <div class="card-body"> 
+                <pre> 
+                    let num1 =123;
+                    let num1str ="222";
+                    let charStr ="222abc";
+                    console.log(123 ,'is',isNaN(num1)); => false
+                    console.log('222 is - ',isNaN(num1str)); => false
+                    console.log('222abc is  - ',isNaN(charStr)); => true
+               </pre>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

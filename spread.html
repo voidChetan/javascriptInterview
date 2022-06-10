@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Spread Operator</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        pre {
+            padding: 5px;
+            color: #ffff !important;
+            background-color: #575252 !important;
+        }
+    </style>
+   
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">Javascript</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="chapter1.html">Hoisting</a>
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link" href="functions.html">Functions</a>
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link" href="Closures.html">Cloures</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="clouresInterview.html">Cloures Adv</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="coding.html">Coding Example</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="prototype.html">Prototype</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascriptAdv.html">Adv Javascript</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascriptAdv.html">Adv Javascript</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="spread.html">Spread Operator</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="es6.html">ES6  Feature</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+
+    <div class="container"> 
+        
+        <div class="card">
+            <div class="card-header bg-secondary">
+                <p>The spread operator is represented by three dots (...) to obtain the list of parameters.
+                    It allows the expansion of an iterable such as array or string in places where more than zero arguments are expected.</p>
+                <p>Spread operator allows iterables( arrays / objects / strings ) to be expanded into single arguments/elements.</p>
+            </div>
+            <div class="card-body">
+                <pre>
+                    let nume1= [1,2,3];
+                    let num2= [...nume1,4,5,6];
+                    console.log('1st way',num2);
+                    output =>1,2,3,4,5,6
+                    let roll1= [1,2,3];
+                    let roll2= [1,4,...roll1,5,6];
+                    console.log('2nd way',roll2);
+                    Output=> 1, 4, 1, 2, 3, 5, 6
+
+                    function sum(x, y, z) {
+                        return x + y + z;
+                    }
+
+                    const numbers = [1, 2, 3];
+                    console.log(sum(...numbers));
+
+                    var obj1 = { id: 101, name: 'Jhon Doe' }
+                    var obj2 = { age: 25, country: 'USA' }
+
+                    const employee = { ...obj1, ...obj2 }
+               </pre>
+            </div>
+            <script>
+                 let num1= [1,2,3];
+                 let num2= [...num1,1,4,5,6];
+                 console.log('1st way',num2);
+
+
+                 let roll1= [1,2,3];
+                 let roll2= [1,4,...roll1,5,6];
+                 console.log('2nd way',roll2); 
+
+                 function sum(x, y, z) {
+                        return x + y + z;
+                }
+
+                const numbers = [1, 2, 3];
+                console.log(sum(...numbers));
+
+                var obj1 = { id: 101, name: 'Jhon Doe' }
+                var obj2 = { age: 25, country: 'USA' }
+
+                const employee = { ...obj1, ...obj2 }
+            </script>
+        </div>
+        <div class="card">
+            <div class="card-header bg-secondary">
+                <p>Cloaning using spread operator</p>
+                
+            </div>
+            <div class="card-body">
+                <pre>
+                    let student = {
+                        name: 'chetan',
+                        city:'Nagpur',
+                        contact: {
+                           mobile: '99998888444',
+                           email: 'chetanjogi1@gmail.com'
+                        }
+                    };
+                    let student2 = {...student};
+                    student2.city = 'mumbai'; => fileds on 1st leval wont get changed in original object
+                    student2.contact.mobile = "8698707388"; => but inner object fields will get changed in original object
+                    console.log(student);
+                    output
+                    name: "chetan
+                    city: "Nagpur"
+                    contact:
+                        email: "chetanjogi1@gmail.com"
+                        mobile: "8698707388" 
+                   
+               </pre>
+            </div>
+            <script>
+                let student = {
+                     name: 'chetan',
+                     city:'Nagpur',
+                     contact: {
+                        mobile: '99998888444',
+                        email: 'chetanjogi1@gmail.com'
+                     }
+                 };
+                 let student2 = {...student};
+                 student2.city = 'mumbai';
+                 student2.contact.mobile = "8698707388";
+                 console.log(student);
+            </script>
+        </div>
+        <div class="card">
+            <div class="card-header bg-secondary">
+                <p>It is introduced in ES6 that improves the ability to handle the parameters. With rest parameters, it is possible to represent 
+                    indefinite parameters as an array. By using the rest parameter, we can call a function with any number of arguments.</p>
+ 
+            </div>
+            <div class="card-body">
+                <pre>
+                    function show(...args) {
+                        let sum = 0;
+                        for (let i of args) {
+                            sum += i;
+                        }
+                        console.log("Sum = " + sum);
+                    } 
+                    show(10, 20, 30);
+               </pre>
+            </div>
+            <script>
+                 function show(...args) {
+                        let sum = 0;
+                        for (let i of args) {
+                            sum += i;
+                        }
+                        console.log("Sum = " + sum);
+                    } 
+                    show(10, 20, 30); 
+                 
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>

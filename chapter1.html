@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Hoisting, Callstack & Execution</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        pre {
+            padding: 1px;
+            color: #ffff !important;
+            background-color: #575252 !important;
+        }
+        #colorTag {
+            color: green;
+        }
+        .firstTag {
+            color: blue;
+        }
+    </style>
+    <script>
+        debugger;
+
+        // console.log(aarollNo);
+        // var aasquare1 = aagetSquare(4);
+        // var aasquare2 = aagetSquare(aarollNo);
+        // var aarollNo = 2;
+        // function aagetSquare(num) {
+        //     var result = num * num;
+        //     return result;
+        // }
+        // console.log("aaa ", aagetName);
+        // const num2= 123;
+        // // aafunctionAsVariable();
+        // var aagetName = () => {
+        //     console.log("Arrow");
+        // }
+        // var aafunctionAsVariable = function () {
+        //     console.log('functionAsVariable');
+        // }
+
+        // function y() {
+        //         for (var index = 0; index < 5; index++) {
+        //             console.log('For ' + index);
+        //             setTimeout(function () {
+        //                 console.log("timoout:" +index);
+        //             }, index * 1000)
+        //         }
+        //         console.log("outside"+ index);
+        //                 }
+        //     y();
+        // let rollNo  = [1,1,3,4,5,6,7,8,5,8,9,10];
+        // console.log('Complete array', rollNo);
+        // let uniqueArr1=  [... new Set(rollNo)];
+
+        // function removeDup(arr) {
+        //     return arr.filter(function(item,pos){
+        //         return arr.indexOf(item) ==pos;
+        //     })
+        // }
+        
+        // console.log('unique using set' +uniqueArr1);
+        // console.log('unique using filter' +removeDup(rollNo));
+
+    //     var name="CHETAAN";
+    //     let splitStr = name.split("");
+    //     console.log('split' + splitStr);
+    //     let revSlpit = splitStr.reverse();
+    //     console.log('revSlpit'+ revSlpit);
+    //     let reverStr = revSlpit.join("");
+    //     console.log("reverse String"+ reverStr);
+
+    //     function getRev(str){
+    //         let revStr ="";
+    //         for(let i=str.length-1;i >=0;i--) {
+    //             revStr+= str[i];
+    //         }
+    //         return revStr;
+    //     }
+    //    console.log(getRev("DEMO"))
+    // function add(num1, num2) {
+    //                     return num1 + num2;
+    //                 }
+    //                 function add(num1, num2, num3) {
+    //                     return num1 + num2+ num3;
+    //                 }
+    //                 console.log(add(2,3)); 
+// var a = {
+// 	name: 'Hemant'
+// }
+// var b = 2;
+// function change(tempA, tempB) {
+// 	tempA.name = 'Nikhil';
+// 	tempB = 3;
+// }
+// change(a, b); 
+// console.log(a.name, b); 
+// console.log('first');
+// setTimeout(() => {
+//   console.log('setTimeout');
+// }, 0);
+// console.log('last');    
+
+
+var name = "Nikhil";
+
+var person = {
+    name: "Hemant",
+    age: 30,
+    getDetail: function () {
+        console.log('getDetail ' +this.name);
+    },
+    getName: () => {
+        console.log('getName '+this.name);
+    }
+}
+
+function printname() {
+ console.log('printname '+this.name); 
+}
+
+person.getDetail();
+person.getName();
+
+addPerson = {
+    name: "Chetan"
+}
+
+var fun = printname.bind(addPerson, '','');
+
+fun();
+
+    </script>
+
+</head>
+
+var name = "Nikhil";
+var person = {
+    name: "Hemant",
+    age: 30,
+    getDetail: function () {
+        console.log('getDetail ' +this.name);
+    },
+    getName: () => {
+        console.log('getName '+this.name);
+    }
+}
+function printname() {
+ console.log('printname '+this.name); 
+}
+person.getDetail();
+person.getName();
+addPerson = {
+    name: "Chetan"
+}
+var fun = printname.bind(addPerson, '','');
+fun();
+<body>
+
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">Javascript</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link firstTag" id="colorTag" style="color: red;" href="chapter1.html">Hoisting</a>
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link" href="functions.html">Functions</a>
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link" href="Closures.html">Cloures</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="clouresInterview.html">Cloures Adv</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="coding.html">Coding Example</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="prototype.html">Prototype</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascriptAdv.html">Adv Javascript</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascriptAdv.html">Adv Javascript</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="spread.html">Spread Operator</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="es6.html">ES6  Feature</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+
+    <div class="container">
+        <h3>Javascript Hoisting</h3>
+        <p>It is way by which we can use variable and functions before intializing it</p>
+        <div class="card">
+            <div class="card-header bg-secondary">
+                Example 1
+            </div>
+            <div class="card-body">
+                <pre>
+                    getName(); -> It will get called 
+                    console.log(X); -> it will print undefined because when x has been alloted memory with undefined value
+                    var X = 123;
+                    function getName() { 
+                        console.log("Hello");
+                    }
+                    var arrowFuntion = () => {
+                        console.log('arrowFuntion');
+                    }
+                    var functionAsVariable = function () {
+                        console.log('functionAsVariable');
+                    }
+               </pre>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header bg-secondary">
+                Example 2
+            </div>
+            <div class="card-body">
+                <pre>
+                    arrowFuntion(); -> this will print arrowFuntion is not a function as arrow function behave like variable so its has undefined value so we cant execute it 
+                    but If we do like 
+                    var abc = arrowFuntion;
+                    now abc will hjave value undefined.
+                    console.log(X); -> it will print undefined because when x has been alloted memory with undefined value
+                    var X = 123;
+                     
+                    var arrowFuntion = () => {
+                        console.log('arrowFuntion');
+                    }
+                    var functionAsVariable = function () {
+                        console.log('functionAsVariable');
+                    }
+               </pre>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

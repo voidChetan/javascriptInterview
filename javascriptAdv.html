@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Adv Javascript </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        pre {
+            padding: 1px;
+            color: #ffff !important;
+            background-color: #575252 !important;
+        }
+
+        .event {
+            padding: 30px;
+            min-width: 100px;
+            min-height: 100px;
+            border: 1px solid;
+        }
+
+        .flex-item {
+            background-color: #7887AB;
+            flex-grow: 1;
+            margin: 30px;
+            line-height: 100px;
+            min-height: 100px;
+            text-align: center;
+            border: 1px solid;
+        }
+
+        .catagory {
+            border: 1px solid;
+            display: flex;
+            margin: 10px;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">Javascript</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="chapter1.html">Hoisting</a>
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link" href="functions.html">Functions</a>
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link" href="Closures.html">Cloures</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="clouresInterview.html">Cloures Adv</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="coding.html">Coding Example</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="prototype.html">Prototype</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascriptAdv.html">Adv Javascript</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="javascriptAdv.html">Adv Javascript</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="spread.html">Spread Operator</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="es6.html">ES6  Feature</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <h3>Event Bubbling and Capturing </h3>
+        <p>Event bubbling and capturing are two ways of event propagation in the HTML DOM API, when an event occurs in
+            an element inside another element, and both elements have registered a handle for that event. The event
+            propagation mode determines in which order the elements receive the event.</p>
+        <div class="card">
+            <div class="card-header bg-secondary">
+                Event Bubling - event will trigger from inner to outer div just like bubble blows
+            </div>
+            <div class="card-body">
+                <div class="event text-center" id="grandParent">
+                    grand Parent
+                    <div class="event text-center" id="parent">
+                        parent
+                        <div class="event text-center" id="child">
+                            Child
+                        </div>
+                    </div>
+                </div>
+                <pre>
+                 document.querySelector("#child").addEventListener('click',function(){
+                     console.log('child clicked');
+                 }, false);
+                 document.querySelector('#parent').addEventListener('click',function(){
+                     console.log('parent clicked');
+                 }, false);
+                 document.querySelector('#grandParent').addEventListener('click',function(){
+                     console.log('grandParent clicked');
+                 }, false);
+                 If we click on child div so event will propofgate form inner top outer , event propagation is false which is default 
+                 output
+                 child clicked
+                 parent clicked
+                 grandParent clicked
+                 </pre>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header bg-secondary">
+                Event Capturing - event will trigger from outer to inner div
+            </div>
+            <div class="card-body">
+                <div class="event text-center" id="grandParent2">
+                    grand Parent
+                    <div class="event text-center" id="parent2">
+                        parent
+                        <div class="event text-center" id="child2">
+                            Child
+                        </div>
+                    </div>
+                </div>
+                <pre>
+                 document.querySelector("#child").addEventListener('click',function(){
+                     console.log('child clicked');
+                 }, true);
+                 document.querySelector('#parent').addEventListener('click',function(){
+                     console.log('parent clicked');
+                 }, true);
+                 document.querySelector('#grandParent').addEventListener('click',function(){
+                     console.log('grandParent clicked');
+                 }, true);
+                 If we click on child div so event will propofgate form outer div to inner   , event propagation is true
+                 output
+                 grandParent clicked
+                 parent clicked
+                 child clicked
+                 
+                 
+                 </pre>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header bg-secondary">
+                e.stopPropagation() - with this we can stop event propogation- in this case child event won't be called.
+                as we have added event propogation so next event will be stopped.
+            </div>
+            <div class="card-body">
+                <div class="event text-center" id="grandParent3">
+                    grand Parent
+                    <div class="event text-center" id="parent3">
+                        parent
+                        <div class="event text-center" id="child3">
+                            Child
+                        </div>
+                    </div>
+                </div>
+                <pre>
+                 document.querySelector("#child").addEventListener('click',function(){
+                     console.log('child clicked');
+                 }, true);
+                 document.querySelector('#parent').addEventListener('click',function(e){
+                     e.stopPropagation(); -> with this we can stop propogation
+                     console.log('parent clicked');
+                 }, true);
+                 document.querySelector('#grandParent').addEventListener('click',function(){
+                     console.log('grandParent clicked');
+                 }, true);
+                 If we click on child div so event will propofgate form outer div to inner   , event propagation is true
+                 output
+                 grandParent clicked
+                 parent clicked
+                 child clicked
+                 
+                 
+                 </pre>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h3>async vs defer attributes in Javascript </h3>
+        <p>these are the attributes which decide the execution way how script will be loaded from server and its execution</p>
+        <div class="card">
+            <div class="card-header bg-secondary">
+                async vs defe
+            </div>
+            <div class="card-body">
+                 <ul>
+                     <li>Normal Way - if any script tag appears html parsing will stop until script is downloaded and executed then html parsing will be done</li>
+                    <li>async way - if any script tag appears parallely it will download script once download it will stop html parsing and execute script then it will start html parsing </li>
+                    <li> defer way- if any script tag is there parallely it will download and do execution and html parsing as well</li> 
+                    </ul>
+                <pre>
+                    Normal way
+                    <script > </script>
+                    async way
+                    <script async> </script>
+                    defer way
+                    <script defer> </script>
+                 </pre>
+            </div>
+        </div> 
+    </div>
+    <div class="container">
+        <h3>Event Delagation </h3>
+        <p>The idea of event delegation is simple. Instead of attaching the event listeners directly to the buttons, you
+            delegate listening to the parent
+            When a button is clicked, the listener of the parent element catches the bubbling event
+            (recall the event propagation?).</p>
+        <div class="card">
+            <div class="card-header bg-secondary">
+                Event Delagation
+            </div>
+            <div class="card-body">
+                <div class="catagory">
+                    <div class="flex-item" id="laptop">
+                        laptop
+                    </div>
+
+                    <div class="flex-item" id="camera">
+                        camera
+                    </div>
+
+                    <div class="flex-item" id="bike">
+                        bike
+                    </div>
+
+                    <div class="flex-item" id="mobile">
+                        mobile
+                    </div>
+                </div>
+                <pre>
+                            document.querySelector(".catagory").addEventListener('click',function(e){
+                                debugger;
+                                        console.log(e.target.id ,'clicked');
+                                        alert(e.target.id ,'clicked')
+                                    });
+                        So instead of adding event listner to all catagory you can just add to parent
+                         so with e.target we can get clicked element this is because of event bubling
+                         </pre>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h3>Debouncing in JavaScript </h3>
+        <p>Debouncing is a programming practice used to ensure that time-consuming tasks do not fire so often, that it stalls the performance of the web page.
+             In other words, it limits the rate at which a function gets invoked</p>
+        <div class="card">
+            <div class="card-header bg-secondary">
+                Debouncing
+            </div>
+            <div class="card-body">
+                 <div class="row pt-1 pb-2">
+                     <div class="col-md-3">
+                         <input type="text" class="form-contorl" onkeyup="debounceFun()" placeholder="search"/>
+                     </div>
+                 </div>
+                <pre>
+                    basic logic is to create function with timer   and use settimeout to call out actual function
+                    this same logic and concept is being used in search bar at any shopping website
+                    let counter = 0;
+                     const getData = () => {
+                          console.log('search call made',counter++)
+                      }
+                      const debounce = function(delay)   {
+                          let timer;
+                          return function() {
+                            let context = this,
+                            args = arguments;
+                            clearTimeout(timer);
+                            timer = setTimeout(() => {
+                                getData.apply(context, args);
+                            },delay);
+                        } 
+                    }
+                    const debounceFun = debounce(300)        
+                 </pre>
+                 <script>
+                     let counter = 0;
+                     const getData = () => {
+                          console.log('search call made',counter++)
+                      }
+                      const debounce = function(fun,delay)   {
+                          let timer;
+                          return function() {
+                            let context = this,
+                            args = arguments;
+                            clearTimeout(timer);
+                            timer = setTimeout(() => {
+                                getData.apply(context, args);
+                            },delay);
+                        } 
+                    }
+                    const debounceFun = debounce(getData,300)
+                 </script>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h3>Throttling in JavaScript </h3>
+        <p>Throttling is a technique in which, no matter how many times the user fires the event, the attached function will be executed only once in a given time interval.</p>
+        <div class="card">
+            <div class="card-header bg-secondary">
+                Throttling
+            </div>
+            <div class="card-body">
+                 <div class="row pt-1 pb-2">
+                    <div class="col-md-3">
+                          resize to see normal execution
+                   </div>
+                     <div class="col-md-3">
+                          Just Scroll to see magic
+                     </div>
+                 </div>
+                <pre>
+                    basic logic is to create function with flag which gets changed once function is executed and flag gets 
+                    changed again in settimout so next time function will execute   
+                    let counetr =0; 
+                    const throttle = (func,limit)=> {
+                        let flag  = true;
+                        return function () {
+                            if(flag) {
+                                func();
+                                flag = false;
+                                 setTimeout(()=>{
+                                   flag = true;
+                                 }, limit);
+                            }
+                        }
+                    } 
+                    const expensive = ()=> {
+                        console.log('expensive called',counetr ++);
+                    }
+                    const betterFun = throttle(expensive,900);
+                    window.addEventListener("scroll",betterFun); 
+                    window.addEventListener("resize",expensive); 
+                 </pre>
+                 <script>
+                     let counetr =0;
+                     
+                     const throttle = (func,limit)=> {
+                         let flag  = true;
+                         return function () {
+                             if(flag) {
+                                 func();
+                                 flag = false;
+                                  setTimeout(()=>{
+                                    flag = true;
+                                  }, limit);
+                             }
+                         }
+                     } 
+                     const expensive = ()=> {
+                         console.log('expensive called',counetr ++);
+                     }
+                     const betterFun = throttle(expensive,900);
+                     window.addEventListener("scroll",betterFun);
+                     window.addEventListener("resize",expensive);
+                 </script>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h3>call, apply and bind method in JavaScript </h3> 
+        <div class="card">
+            <div class="card-header bg-secondary">
+                <p>The call() method calls a function with a given this value and arguments provided individually.</p>
+                <p>The apply() difference is we can send parameteres as array</p>
+                <p>The bind() you can store function in variable and call it in future.</p>
+            </div>
+            <div class="card-body"> 
+                 <script>
+                     let person = {
+                         name: 'chetan',
+                         city: 'Nagpur'
+                     };
+                     let getDetails = function() { 
+                         console.log('call method -',this.name, ' ',  this.city);
+                     } 
+                     getDetails.call(person);
+
+                     let getFullDetails = function(state,country) { 
+                         console.log('apply method -',this.name, ' ',  this.city, 'state is ', state, 'with country ', country);
+                     }
+                     getFullDetails.call(person, 'Mah','India');
+                     getFullDetails.apply(person, ['Mah','India']); 
+
+                     let funReference = getFullDetails.bind(person, "Hydrabad","India");
+                     funReference();
+
+                     debugger;
+                    let funReference2 = getFullDetails.bind(person, ["aaaa","wwww"]);
+                    funReference2(); 
+                 </script>
+                <pre>
+                    let person = {
+                        name: 'chetan',
+                        city: 'Nagpur'
+                    };
+                    let getDetails = function() { 
+                        console.log('call method -',this.name, ' ',  this.city);
+                    } 
+                    getDetails.call(person);
+
+                    let getFullDetails = function(state,country) { 
+                        console.log('apply method -',this.name, ' ',  this.city, 'state is ', state, 'with country ', country);
+                    }
+                    getFullDetails.call(person, 'Mah','India');
+                    getFullDetails.apply(person, ['Mah','India']);  => with apply you can send arguments as array
+
+                    let funReference = getFullDetails.bind(person, "Hydrabad","India");
+                    funReference();     
+                    
+                 </pre> 
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h3>Strict Mode </h3> 
+        <div class="card">
+            <div class="card-header bg-secondary">
+                You can use strict mode in all your programs. It helps you to write cleaner code, like preventing you from using undeclared variables.
+            </div>
+            <div class="card-body">  
+                <pre>
+                "use strict";
+                x = 3.14;
+                
+                "use strict";
+                delete x; -> Deleting a variable (or object) is not allowed
+                function x(p1, p1) {};-> duplication parameters is not allowed
+                "use strict";
+                let x = 010; Octal numeric literals are not allowed:
+                </pre>
+                 <script>
+                //     "use strict"; 
+                //  let x = 3.14;
+                // delete x;    
+                // function x(p1, p1) {};
+                </script>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h3>Map Filter Reduce </h3> 
+        <div class="card">
+            <div class="card-header bg-secondary">
+               
+            </div>
+            <div class="card-body">  
+                <pre>
+                    let numbers= [2,1,22,45,6,3,7];
+                    console.log('numbers' + numbers);
+                    function double(x) {
+                        return x*2;
+                    }
+                    let douNumbers =numbers.map(m=>m * 2);
+                    let douNumbers2 =numbers.map(double);
+                    console.log('double'+ douNumbers2);
+
+                    let oddArry = numbers.filter(x=>x%2);
+                    console.log('odd array' + oddArry);
+                    let evenArray = numbers.filter(x=>x%2 ==0);
+                    console.log('evenArray  ' + evenArray);
+
+                    function getSum() {
+                        let sum = 0;
+                        for(let i=0;i<numbers.length;i++) {
+                            sum = sum + numbers[i]
+                        }
+                        return sum;
+                    }
+                    function getMax() {
+                        let max = 0;
+                        for(let i=0;i<numbers.length;i++) {
+                            if (numbers[i] >max) {
+                                max= numbers[i]
+                            }
+                        }
+                        return max;
+                    }
+                    let sumT =getSum();
+                    console.log('Add' + sumT);
+                    let sumW = numbers.reduce(function(tot,index) {
+                        tot = tot + index;
+                        return tot;
+                    },0);
+                    console.log('Sum using reduce '  + sumW);
+
+                    let maxVal= getMax();
+                    console.log('maxVal '  + maxVal);
+                    let maxVal2= numbers.reduce(function(max,index) {
+                        if (index>max) {
+                            max = index;
+                        }
+                        return max;
+                    },0);
+                    console.log('maxVal2 '  + maxVal2);
+                </pre>
+                 <script>
+                    let numbers= [2,1,22,45,6,3,7];
+                    console.log('numbers' + numbers);
+                    function double(x) {
+                        return x*2;
+                    }
+                    let douNumbers =numbers.map(m=>m * 2);
+                    let douNumbers2 =numbers.map(double);
+                    console.log('double'+ douNumbers2);
+
+                    let oddArry = numbers.filter(x=>x%2);
+                    console.log('odd array' + oddArry);
+                    let evenArray = numbers.filter(x=>x%2 ==0);
+                    console.log('evenArray  ' + evenArray);
+
+                    function getSum() {
+                        let sum = 0;
+                        for(let i=0;i<numbers.length;i++) {
+                            sum = sum + numbers[i]
+                        }
+                        return sum;
+                    }
+                    function getMax() {
+                        let max = 0;
+                        for(let i=0;i<numbers.length;i++) {
+                            if (numbers[i] >max) {
+                                max= numbers[i]
+                            }
+                        }
+                        return max;
+                    }
+                    let sumT =getSum();
+                    console.log('Add' + sumT);
+                    let sumW = numbers.reduce(function(tot,index) {
+                        tot = tot + index;
+                        return tot;
+                    },100);
+                    console.log('Sum using reduce '  + sumW);
+
+                    let maxVal= getMax();
+                    console.log('maxVal '  + maxVal);
+                    let maxVal2= numbers.reduce(function(max,index) {
+                        if (index>max) {
+                            max = index;
+                        }
+                        return max;
+                    },0);
+                    console.log('maxVal2 '  + maxVal2);
+                </script>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelector(".catagory").addEventListener('click', function (e) {
+            console.log(e.target.id, 'clicked');
+            alert(e.target.id, 'clicked')
+        });
+        document.querySelector("#child").addEventListener('click', function () {
+            console.log('child clicked');
+            alert('child clicked')
+        }, false);
+        document.querySelector('#parent').addEventListener('click', function () {
+            console.log('parent clicked');
+            alert('parent clicked')
+        }, false);
+        document.querySelector('#grandParent').addEventListener('click', function () {
+            console.log('grandParent clicked');
+            alert('grandParent clicked')
+        }, false);
+
+        document.querySelector("#child2").addEventListener('click', function () {
+            console.log('child clicked');
+            alert('child clicked')
+        }, true);
+        document.querySelector('#parent2').addEventListener('click', function () {
+            console.log('parent clicked');
+            alert('parent clicked')
+        }, true);
+        document.querySelector('#grandParent2').addEventListener('click', function () {
+            console.log('grandParent clicked');
+            alert('grandParent clicked')
+        }, true);
+
+        document.querySelector("#child3").addEventListener('click', function () {
+            console.log('child clicked');
+            alert('child clicked')
+        }, true);
+        document.querySelector('#parent3').addEventListener('click', function (e) {
+            e.stopPropagation();
+            console.log('parent clicked');
+            alert('parent clicked')
+        }, true);
+        document.querySelector('#grandParent3').addEventListener('click', function () {
+            console.log('grandParent clicked');
+            alert('grandParent clicked')
+        }, true);
+    </script>
+</body>
+
+</html>
